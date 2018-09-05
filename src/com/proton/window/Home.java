@@ -39,9 +39,9 @@ public class Home extends javax.swing.JFrame {
         menuCadastroCliente = new javax.swing.JMenu();
         menuCadastroOs = new javax.swing.JMenuItem();
         menuCadastroUsuario = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        menuusuarios = new javax.swing.JMenuItem();
         menuRelatorio = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        menServicos = new javax.swing.JMenuItem();
         menuAbout = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
@@ -116,29 +116,29 @@ public class Home extends javax.swing.JFrame {
         });
         menuCadastroCliente.add(menuCadastroUsuario);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem3.setText("Usuários");
-        jMenuItem3.setEnabled(false);
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        menuusuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
+        menuusuarios.setText("Usuários");
+        menuusuarios.setEnabled(false);
+        menuusuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                menuusuariosActionPerformed(evt);
             }
         });
-        menuCadastroCliente.add(jMenuItem3);
+        menuCadastroCliente.add(menuusuarios);
 
         Menu.add(menuCadastroCliente);
 
         menuRelatorio.setText("Relatório");
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem4.setText("Serviços");
-        jMenuItem4.setEnabled(false);
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        menServicos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        menServicos.setText("Serviços");
+        menServicos.setEnabled(false);
+        menServicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                menServicosActionPerformed(evt);
             }
         });
-        menuRelatorio.add(jMenuItem4);
+        menuRelatorio.add(menServicos);
 
         Menu.add(menuRelatorio);
 
@@ -219,13 +219,13 @@ public class Home extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void menServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menServicosActionPerformed
         // TODO add your handling code here:
         // Relatório-Serviços
         WindowServicos ws = new WindowServicos();
         ws.setVisible(true);
         //this.dispose();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_menServicosActionPerformed
 
     private void menuCadastroOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroOsActionPerformed
         // Cadastro-Cliente menu
@@ -233,9 +233,9 @@ public class Home extends javax.swing.JFrame {
         //
     }//GEN-LAST:event_menuCadastroOsActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void menuusuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuusuariosActionPerformed
         // Cadastro-Usuários
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_menuusuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,18 +276,18 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JDesktopPane Home;
     private javax.swing.JMenuBar Menu;
     private javax.swing.JLabel jLabel1;
-    public static javax.swing.JMenuItem jMenuItem3;
-    public static javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblUsuario;
+    public static javax.swing.JMenuItem menServicos;
     private javax.swing.JMenu menuAbout;
     private javax.swing.JMenu menuCadastroCliente;
     private javax.swing.JMenuItem menuCadastroOs;
     private javax.swing.JMenuItem menuCadastroUsuario;
     private javax.swing.JMenu menuRelatorio;
     private javax.swing.JMenu menuSair;
+    public static javax.swing.JMenuItem menuusuarios;
     // End of variables declaration//GEN-END:variables
 }

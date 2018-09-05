@@ -19,16 +19,25 @@ public class Login extends javax.swing.JFrame {
     ResultSet rs = null;
 
     public void logar(){
+        //pegando login e senha 
         String sql = "select * from tabelausuarios where login=? and senha=?";
 
         try{
             pst = conexao.prepareStatement(sql);
             pst.setString(1, user.getText());
-            //teste isso aqui
+            //testar isso aqui
             //usuariologado = user.getText();
             pst.setString(2, password.getText());
             rs = pst.executeQuery();
             if(rs.next()){
+                String perfil = rs.getString(6);
+                System.out.println(perfil);
+                //filtrando as opções da tela principal
+                if(perfil.equals("root")){
+                    //ta dando como null o perfil
+                    Home.menServicos.setEnabled(true);
+                    Home.menuusuarios.setEnabled(true);
+                }
                 Home homewindow = new Home();
                 homewindow.setVisible(true);
                 this.dispose();
