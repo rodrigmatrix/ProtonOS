@@ -189,6 +189,7 @@ public class Home extends javax.swing.JFrame {
         //lblUsuario.setText(user);
         Date data = new Date();
         DateFormat formatardata = DateFormat.getDateInstance(DateFormat.SHORT);
+        lblUsuario.setText(nomehome);
         lblData.setText(formatardata.format(data));
     }//GEN-LAST:event_menuCadastroUsuarioActionPerformed
 
@@ -280,7 +281,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblData;
-    private javax.swing.JLabel lblUsuario;
+    public static javax.swing.JLabel lblUsuario;
     public static javax.swing.JMenuItem menServicos;
     private javax.swing.JMenu menuAbout;
     private javax.swing.JMenu menuCadastroCliente;

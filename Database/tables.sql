@@ -30,6 +30,9 @@ foreign key(idclientes) references tbclientes(idclientes)
 insert into tabelausuarios(
 iduser, usuario, login, senha)
 VALUES ('1','Rodrigo','root','root');
+insert into tabelausuarios(
+iduser, usuario, login, senha,perfil)
+VALUES ('2','Rodrigo','normal','normal','normal');
 
 insert into tbos(
 ordem, data_ordem, equipamento, defeito, servico, tecnico, valor
@@ -41,6 +44,7 @@ describe tabelausuarios;
 select * from tabelausuarios;
 alter table tabelausuarios add column perfil varchar(20) not null;
 update tabelausuarios set perfil='root' where iduser=1;
+
 
 
 

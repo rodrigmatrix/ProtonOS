@@ -30,17 +30,24 @@ public class Login extends javax.swing.JFrame {
             pst.setString(2, password.getText());
             rs = pst.executeQuery();
             if(rs.next()){
-                String perfil = rs.getString(6);
+                String perfil = rs.getString(6); //pegando o tipo de usuario
+                String nomehome = rs.getString(2);
+
                 System.out.println(perfil);
                 //filtrando as opções da tela principal
                 if(perfil.equals("root")){
-                    //ta dando como null o perfil
+                    Home homewindow = new Home();
+                    homewindow.setVisible(true);
+                    Home.lblUsuario.setText(nomehome);
                     Home.menServicos.setEnabled(true);
                     Home.menuusuarios.setEnabled(true);
+                    this.dispose();
                 }
-                Home homewindow = new Home();
-                homewindow.setVisible(true);
-                this.dispose();
+                else{
+                    Home homewindow = new Home();
+                    homewindow.setVisible(true);
+                    this.dispose();
+                }
 
             }
             else{
