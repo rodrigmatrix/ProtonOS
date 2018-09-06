@@ -189,7 +189,6 @@ public class Home extends javax.swing.JFrame {
         //lblUsuario.setText(user);
         Date data = new Date();
         DateFormat formatardata = DateFormat.getDateInstance(DateFormat.SHORT);
-        lblUsuario.setText(nomehome);
         lblData.setText(formatardata.format(data));
     }//GEN-LAST:event_menuCadastroUsuarioActionPerformed
 
@@ -236,6 +235,9 @@ public class Home extends javax.swing.JFrame {
 
     private void menuusuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuusuariosActionPerformed
         // Cadastro-Usuários
+        TelaUsuario  tu = new TelaUsuario();
+        tu.setVisible(true);
+        Home.add(tu);
     }//GEN-LAST:event_menuusuariosActionPerformed
 
     /**
