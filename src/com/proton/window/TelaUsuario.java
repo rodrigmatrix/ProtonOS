@@ -69,9 +69,10 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
             pst.setString(2, txtNome.getText());
             pst.setString(3, txtTelefone.getText());
             pst.setString(4, txtLogin.getText());
-            pst.setString(5, txtSenha.getPassword().toString());
+            pst.setString(5, txtSenha.getText().toString());
             pst.setString(6, cmbTipo.getSelectedItem().toString());
-            if(txtId.getText().isEmpty() || txtNome.getText().isEmpty() || txtLogin.getText().isEmpty() || txtSenha.getPassword().toString().isEmpty() || cmbTipo.getSelectedItem().toString().isEmpty()){
+            if(txtId.getText().isEmpty() || txtNome.getText().isEmpty() || txtLogin.getText().isEmpty() || txtSenha.getText().toString().isEmpty() )// falta o perfil)
+            {
                 JOptionPane.showMessageDialog(null, "Todos os campos não foram preenchidos");
             }
             else{
@@ -96,16 +97,18 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
             pst.setString(1, txtNome.getText());
             pst.setString(2, txtTelefone.getText());
             pst.setString(3, txtLogin.getText());
-            pst.setString(4, txtSenha.getPassword().toString());
+            pst.setString(4, txtSenha.getText().toString());
             pst.setString(5, cmbTipo.getSelectedItem().toString());
             pst.setString(6, txtId.getText());
-            if(txtId.getText().isEmpty() || txtNome.getText().isEmpty() || txtLogin.getText().isEmpty() || txtSenha.getPassword().toString().isEmpty() || cmbTipo.getSelectedItem().toString().isEmpty()){
+            if(txtId.getText().isEmpty() || txtNome.getText().isEmpty() || txtLogin.getText().isEmpty() || txtSenha.getPassword().toString().isEmpty())//falta o perfil
+             {
                 JOptionPane.showMessageDialog(null, "Todos os campos não foram preenchidos");
             }
             else{ 
                 int resultado = JOptionPane.showConfirmDialog(null, "Deseja concluir o cadastro desse usuário?");
                 if(resultado==JOptionPane.YES_OPTION){
                     pst.executeUpdate();
+                    
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Cadastro cancelado");
@@ -116,7 +119,27 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     }
 
     private void excluir(){
-        String sql = "Insert into tabeladb where ";
+        String sql = "delete from tabelausuarios where  iduser=?";
+        int deletar = JOptionPane.showConfirmDialog(null, "Deseja excluir esse usuário?");
+        if(deletar==JOptionPane.YES_OPTION){
+            try {
+                pst = conexao.prepareStatement(sql);
+                pst.setString(1, txtId.getText());
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Usuário removido do sistema");
+                txtNome.setText(null);
+                txtNome.setText(null);
+                txtLogin.setText(null);
+                txtSenha.setText(null);
+                txtTelefone.setText(null);
+                cmbTipo.setSelectedItem(null);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        else{
+
+        }
     }
 
     /**
@@ -212,6 +235,11 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         btnExcluir.setToolTipText("Excluir");
         btnExcluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/proton/assets/icons8-plus-64.png"))); // NOI18N
         btnAddUser.setToolTipText("Cadastrar");
@@ -335,6 +363,11 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         atualizar();
     }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        excluir();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
