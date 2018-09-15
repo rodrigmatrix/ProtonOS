@@ -71,12 +71,17 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
             pst.setString(4, txtLogin.getText());
             pst.setString(5, txtSenha.getPassword().toString());
             pst.setString(6, cmbTipo.getSelectedItem().toString());
-            if(txtId.getText().isEmpty() || txtNome.getText().isEmpty() || txtLogin.getText().isEmpty() || txtSenha.getText().isEmpty() || cmbTipo.getSelectedItem().toString().isEmpty()){
+            if(txtId.getText().isEmpty() || txtNome.getText().isEmpty() || txtLogin.getText().isEmpty() || txtSenha.getPassword().toString().isEmpty() || cmbTipo.getSelectedItem().toString().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Todos os campos não foram preenchidos");
             }
             else{
-                pst.executeUpdate();
-                JOptionPane.showConfirmDialog(null, "Deseja concluir o cadastro desse usuário?");
+                int resultado = JOptionPane.showConfirmDialog(null, "Deseja concluir o cadastro desse usuário?");
+                if(resultado==JOptionPane.YES_OPTION){
+                    pst.executeUpdate();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Cadastro cancelado");
+                }
             }
             
         } catch (Exception e) {
@@ -85,7 +90,29 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     }
 
     private void atualizar(){
-        String sql = "Insert into tabeladb where ";
+        String sql = "update tabelausuarios set usuario=?, telefone=?, login=?,senha=?, perfil=? where iduser=?";
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtNome.getText());
+            pst.setString(2, txtTelefone.getText());
+            pst.setString(3, txtLogin.getText());
+            pst.setString(4, txtSenha.getPassword().toString());
+            pst.setString(5, cmbTipo.getSelectedItem().toString());
+            pst.setString(6, txtId.getText());
+            if(txtId.getText().isEmpty() || txtNome.getText().isEmpty() || txtLogin.getText().isEmpty() || txtSenha.getPassword().toString().isEmpty() || cmbTipo.getSelectedItem().toString().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Todos os campos não foram preenchidos");
+            }
+            else{ 
+                int resultado = JOptionPane.showConfirmDialog(null, "Deseja concluir o cadastro desse usuário?");
+                if(resultado==JOptionPane.YES_OPTION){
+                    pst.executeUpdate();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Cadastro cancelado");
+                }
+            }} catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } 
     }
 
     private void excluir(){
@@ -175,6 +202,11 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         btnAtualizar.setToolTipText("Atualizar");
         btnAtualizar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAtualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/proton/assets/icons8-delete-64.png"))); // NOI18N
         btnExcluir.setToolTipText("Excluir");
@@ -298,6 +330,11 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         adicionar();
     }//GEN-LAST:event_btnAddUserActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        // TODO add your handling code here:
+        atualizar();
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
