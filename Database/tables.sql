@@ -44,6 +44,10 @@ describe tabelausuarios;
 select * from tabelausuarios;
 alter table tabelausuarios add column perfil varchar(20) not null;
 update tabelausuarios set perfil='root' where iduser=1;
+use db;
+describe tbclientes;
+select * from tbclientes;
+describe tbos;
 
 
 

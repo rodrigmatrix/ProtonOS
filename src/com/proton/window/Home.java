@@ -229,6 +229,9 @@ public class Home extends javax.swing.JFrame {
 
     private void menuCadastroOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroOsActionPerformed
         // Cadastro-Cliente menu
+        TelaClientes cliente = new TelaClientes();
+        cliente.setVisible(true);
+        Home.add(cliente);
         
         //
     }//GEN-LAST:event_menuCadastroOsActionPerformed

@@ -28,7 +28,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
         initComponents();
         conexao = ModuloConexao.conector();
-
+        
     }
     private void consultar(){ //pesquisar usuario no database
         String sql = "Select * from tabelausuarios where iduser=?";
@@ -105,7 +105,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Todos os campos não foram preenchidos");
             }
             else{ 
-                int resultado = JOptionPane.showConfirmDialog(null, "Deseja concluir o cadastro desse usuário?");
+                int resultado = JOptionPane.showConfirmDialog(null, "Deseja realmente atulizar o cadastro desse usuário?");
                 if(resultado==JOptionPane.YES_OPTION){
                     pst.executeUpdate();
                     
@@ -120,7 +120,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
     private void excluir(){
         String sql = "delete from tabelausuarios where  iduser=?";
-        int deletar = JOptionPane.showConfirmDialog(null, "Deseja excluir esse usuário?");
+        int deletar = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir esse usuário?");
         if(deletar==JOptionPane.YES_OPTION){
             try {
                 pst = conexao.prepareStatement(sql);
