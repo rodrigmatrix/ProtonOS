@@ -65,7 +65,7 @@ public class TelaClientes extends javax.swing.JInternalFrame {
         }
     }
     private void atualizar(){ // FIXME não funciona. pegar o idclientes
-        String sql = "update tbclientes set endereco=?, telefone=?, email=? where idclientes=?";
+        String sql = "update tbclientes set nomecliente=?, endereco=?, telefone=?, email=? where idclientes=?";
         try {
             
             pst = conexao.prepareStatement(sql);
@@ -73,6 +73,7 @@ public class TelaClientes extends javax.swing.JInternalFrame {
             pst.setString(3, txtTelefone.getText());
             pst.setString(4, txtEmail.getText());
             pst.setString(2, txtEndereco.getText());
+            pst.setString(5, txtId.getText());
             if(txtNome.getText().isEmpty() || txtTelefone.getText().isEmpty() || txtEmail.getText().isEmpty() || txtEndereco.getText().isEmpty() )
              {
                 JOptionPane.showMessageDialog(null, "Todos os campos não foram preenchidos");
@@ -81,7 +82,12 @@ public class TelaClientes extends javax.swing.JInternalFrame {
                 int resultado = JOptionPane.showConfirmDialog(null, "Deseja realmente atualizar o cadastro desse cliente?");
                 if(resultado==JOptionPane.YES_OPTION){
                     pst.executeUpdate();
-                    
+                    txtId.setText(null);
+                    txtNome.setText(null);
+                    txtEmail.setText(null);
+                    txtEndereco.setText(null);
+                    txtTelefone.setText(null);
+                    btnAdd.setEnabled(true);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Cadastro cancelado");
@@ -91,13 +97,16 @@ public class TelaClientes extends javax.swing.JInternalFrame {
         } 
     }
     private void excluir(){ // FIXME pegar o idclientes
-        String sql = "delete from tbclientes where  nomeclientes=?";
+        String sql = "delete from tbclientes where  idclientes=?";
         int deletar = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir esse cliente?");
         if(deletar==JOptionPane.YES_OPTION){
             try {
+                
                 pst = conexao.prepareStatement(sql);
+                pst.setString(1, txtId.getText());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Usuário removido do sistema");
+                txtId.setText(null);
                 txtNome.setText(null);
                 txtEmail.setText(null);
                 txtEndereco.setText(null);
@@ -106,17 +115,15 @@ public class TelaClientes extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, e);
             }
         }
-        else{
-
-        }
     }
     private void set_fields(){
         int set = tabelaCliente.getSelectedRow();
-        txtId.setText(tabelaCliente.getModel().getValueAt(set, 1).toString());
+        txtId.setText(tabelaCliente.getModel().getValueAt(set, 0).toString());
         txtNome.setText(tabelaCliente.getModel().getValueAt(set, 1).toString());
         txtEmail.setText(tabelaCliente.getModel().getValueAt(set, 4).toString());
         txtEndereco.setText(tabelaCliente.getModel().getValueAt(set, 2).toString());
         txtTelefone.setText(tabelaCliente.getModel().getValueAt(set, 3).toString());
+        btnAdd.setEnabled(false);
     }
 
     /**
@@ -150,6 +157,7 @@ public class TelaClientes extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Cliente");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Nome");
@@ -184,6 +192,11 @@ public class TelaClientes extends javax.swing.JInternalFrame {
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/proton/assets/icons8-delete-64.png"))); // NOI18N
         btnDelete.setToolTipText("Remover");
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         txtPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -317,6 +330,7 @@ public class TelaClientes extends javax.swing.JInternalFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
         adicionar();
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -332,6 +346,10 @@ public class TelaClientes extends javax.swing.JInternalFrame {
 
         set_fields();
     }//GEN-LAST:event_tabelaClienteMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        excluir();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
