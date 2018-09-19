@@ -190,6 +190,9 @@ public class Home extends javax.swing.JFrame {
         Date data = new Date();
         DateFormat formatardata = DateFormat.getDateInstance(DateFormat.SHORT);
         lblData.setText(formatardata.format(data));
+        OS os = new OS();
+        os.setVisible(true);
+        Home.add(os);
     }//GEN-LAST:event_menuCadastroUsuarioActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
